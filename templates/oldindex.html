@@ -1,0 +1,35 @@
+<html>
+<head>
+	
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+</script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+
+
+</head>
+<body>
+	
+
+<a href="/add_article_page">기사 등록</a>
+<br><br>
+
+<ol>
+{% for item in articles %}
+<li><p>{{item.by}}<a href="{{item.url}}">{{item.title}} </a></p>
+<a href="/like/{{item.title}}">like</a>{{item.score}} 
+<a href="/delete/{{item.title}}">delete</a>
+</li><br>
+{% endfor %}
+</ol>
+</body>
+</html>

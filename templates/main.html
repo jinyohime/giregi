@@ -41,11 +41,12 @@ src:local(※), url(Hanna.woff) format(‘woff’)
 
 a:link{
 	text-decoration: none;
-	
+	color:white;
 }
 
 a:hover{
 	text-decoration: none;
+	color:white;
 }
 
 a:visited{
@@ -136,7 +137,6 @@ header{
 	display: table-cell;
 	text-align: center;
 	vertical-align: middle;	
-	color:white;
 }
 
 .board{
@@ -148,8 +148,7 @@ header{
 	margin-top: 50px;
 	display: table-cell;
 	text-align: center;
-	vertical-align: middle;	
-	color:white;	
+	vertical-align: middle;		
 }
 
 #contents{
@@ -173,22 +172,17 @@ header{
 }
 
 .table{
-
+	display: inline-block;
 	text-align: center;
+	vertical-align: middle;
 	margin:auto;
 	margin-left: auto;
-	margin-top: 80px;
 	width: 100%;
 	position: relative;
 }
 
-td{
-	text-align: center;
-	vertical-align: middle;
-}
-
 #rank{
-	height: 30px;
+	height: 40px;
 	width: 10%;
 	background-color: #BEBFC4;
 	border: 1px solid white;
@@ -196,22 +190,22 @@ td{
 }
 
 #gija{
-	height: 30px;
+	height: 40px;
 	width:  10%;
 	background-color: #BEBFC4;
 	border: 1px solid white;
 }
 
 #gisa{
-	height: 30px;
-	width: 60%;
+	height: 40px;
+	width: 80%;
 	background-color: #BEBFC4;
 	border: 1px solid white;
 }
 
 #rate{
-	height: 30px;
-	width: 15%;
+	height: 40px;
+	width: 10%;
 	background-color: #BEBFC4;
 	border: 1px solid white;
 }
@@ -269,11 +263,6 @@ h3{
 	text-align: center;
 
 }
-h4{
-	font-family: 'Hanna', serif;
-	text-align: center;
-
-}
 
 div{
 
@@ -294,9 +283,7 @@ footer{
 .about{
 	display: inline-block;
 }
-a{
-	color:black;
-}
+
 </style>
 
 </head>
@@ -312,7 +299,7 @@ a{
 		<hgroup >
 			<div class="title">
 				<h1 id="title">김기자 김기레기</h1>
-				<img id="rejected" src="/static/logo.jpg" />
+				<img id="rejected" src="rejected.png" />
 			</div>
 			<div class="slogan"><h3 id="slogan">기자에게 권력을</h3></div>
 		</hgroup>	
@@ -320,11 +307,11 @@ a{
 			<div class="navi">
 				<div class="enroll">
 
-				<a href="/add_article_page"><h3 style="color:white;">기사 등록하기</h3></a>
+				<a href="/add_article_page"><h3>기사 등록하기</h3></a>
 				</div>
 					
 				<div class="board">
-					<a href="#"><h3 style="color:white;">게시판</h3></a>
+					<a href="#"><h3>게시판</h3></a>
 				</div>	
 			</div>
 	</header>
@@ -339,35 +326,30 @@ a{
 		<!--body contents-->
 			<div class="col-xs-8" id="contents">
 			<!--실시간 순위 부분-->
-
-<table class="table">
-	<tr>
-		<td id="rank"><h4>순위</h4></td>
-		<td id="gija"><h4>기자</h4></td>
-		<td id="gisa"><h4>제목</h4></td>
-		<td id="rate"><h4>기레기 지수</h4></td>
-	</tr>
-
-{% for item in articles %}
-<tr><td>{{loop.index}}</td>
-<td>{{item.by}}</td>
-<td><a href="{{item.url}}">{{item.title}} </a><a href="/delete/{{item.title}}">delete</a>
-</td>
-<td>{{item.score}} <a href="/like/{{item.title}}">dislike</a>
-</td>
-</tr>
-{% endfor %}
-	
-
-</table>
-
-
-
 				<div class="row">
 
-
+					<table class="table">
+						<thead>
+							<tr>
+								<td id="rank"><h3>순위</h3></td>
+								<td id="gija"><h3>기자</h3></td>
+								<td id="gisa"><h3>기사</h3></td>
+								<td id="rate"><h3>평점</h3></td>
+							</tr>
+						</thead>
+						<tbody>
 							
-				
+<ol>
+{% for item in articles %}
+<li><p>{{item.by}}<a href="{{item.url}}">{{item.title}} </a></p>
+<a href="/like/{{item.title}}">like</a>{{item.score}} 
+<a href="/delete/{{item.title}}">delete</a>
+</li><br>
+{% endfor %}
+</ol>
+							
+						</tbody>	
+					</table>
 
 											
 				</div>		
@@ -377,7 +359,7 @@ a{
 								<table class="ranking_list">
 									<thead>
 										<tr id='r_column'>
-											<td id="r_column"><h4>기레기 순위</h4></td>
+											<td id="r_column"><h3>기레기 순위</h3></td>
 										</tr>
 									</thead>
 									<tbody>

@@ -9,11 +9,11 @@ db= SQLAlchemy(app)
 	
 from models import *
 
-#jdjdjd
 
 @app.route('/')
 def index():
 	article_query=Article.query.order_by(Article.score).all()
+	article_query.reverse()
 	return render_template('index.html',articles=article_query)	
 
 
@@ -94,7 +94,8 @@ def write_check():
 def add_article():
 	url=request.form['url']
 	title=request.form['title']
-	k=Article(url,title,0)
+	by=request.form['by']
+	k=Article(by,url,title,0)
 	db.session.add(k)
 	db.session.commit()
 	return redirect(url_for('index'))
@@ -105,12 +106,16 @@ def add_article_page():
 
 @app.route('/like/<temp>',methods=['GET'])
 def like(temp):
-	a=Article.query.filter(Article.url==temp).first()
+	a=Article.query.filter(Article.title==temp).first()
 	a.score+=1
-	b=a.score
 	db.session.add(a)
 	db.session.commit()
-	return redirect(url_for('index',b=b))
+	return redirect(url_for('index'))
 
 
-
+@app.route('/delete/<temp>',methods=['GET'])
+def delete(temp):
+	a=Article.query.filter(Article.title==temp).first()
+	db.session.delete(a)
+	db.session.commit()
+	return redirect(url_for('index'))

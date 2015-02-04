@@ -33,13 +33,14 @@ class User2(Base):
 
 class Article(Base):
    __tablename__='article'
+   by=db.Column(db.String(64))
    url=db.Column(db.String(128))
    title=db.Column(db.String(128))
    score=db.Column(db.Integer)
-   def __init__(self,url,title,score):
+   def __init__(self,by,url,title,score):
       self.url=url
       self.title=title
       self.score=score
-
+      self.by=by
 
 
