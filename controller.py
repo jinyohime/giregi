@@ -9,6 +9,7 @@ db= SQLAlchemy(app)
 	
 from models import *
 
+#jdjdjd
 
 @app.route('/')
 def index():
